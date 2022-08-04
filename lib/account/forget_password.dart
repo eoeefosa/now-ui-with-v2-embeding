@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 //Packages
-import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 //UIs
 import '../inc/init.dart';
@@ -41,13 +41,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     super.initState();
     usernameOrEmailFocus = FocusNode();
     usernameOrEmailFocus.addListener(_handleFocusUsernameOrEmail);
-    KeyboardVisibilityNotification().addNewListener(onChange: (bool visibilty) {
-      if (!visibilty && isFocusedUsernameOrEmail == true) {
+    KeyboardVisibilityBuilder(builder: (p0, isKeyboardVisible) {
+      if (!isKeyboardVisible && isFocusedUsernameOrEmail == true) {
         setState(() {
           usernameOrEmailFocus.unfocus();
           isFocusedUsernameOrEmail = false;
         });
+        return Text('');
       }
+      return Text('enter username or password');
     });
   }
 

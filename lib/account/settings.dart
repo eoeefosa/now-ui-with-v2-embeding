@@ -4,7 +4,7 @@ import 'dart:ui';
 // Packages internal, external
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 // Files
 import '../inc/init.dart';
@@ -114,8 +114,8 @@ class _SettingsState extends State<Settings> {
     usernameFocus.addListener(_handleFocusChangeUsername);
     emailFocus.addListener(_handleFocusChangeEmail);
     passwordFocus.addListener(_handleFocusChangePassword);
-    KeyboardVisibilityNotification().addNewListener(onChange: (bool visibilty) {
-      if (!visibilty &&
+    KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+      if (!isKeyboardVisible &&
           (isFocusedUsername || isFocusedEmail || isFocusedPassword)) {
         setState(() {
           usernameFocus.hasFocus
@@ -127,7 +127,9 @@ class _SettingsState extends State<Settings> {
           isFocusedEmail = false;
           isFocusedPassword = false;
         });
+        return Text('enter username');
       }
+      return Text('enter username');
     });
   }
 

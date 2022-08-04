@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 //Packages
-import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 //UIs
 import '../inc/init.dart';
@@ -59,17 +59,21 @@ class _LoginState extends State<Login> {
     passwordFocus = FocusNode();
     usernameFocus.addListener(_handleFocusChangeUsername);
     passwordFocus.addListener(_handleFocusChangePassword);
-    KeyboardVisibilityNotification().addNewListener(onChange: (bool visibilty) {
-      if (!visibilty && (isFocusedUsername || isFocusedPassword)) {
-        setState(() {
-          usernameFocus.hasFocus
-              ? usernameFocus.unfocus()
-              : passwordFocus.unfocus();
-          isFocusedUsername = false;
-          isFocusedPassword = false;
-        });
-      }
-    });
+    KeyboardVisibilityBuilder(
+      builder: (p0, isKeyboardVisible) {
+        if (!isKeyboardVisible && (isFocusedUsername || isFocusedPassword)) {
+          setState(() {
+            usernameFocus.hasFocus
+                ? usernameFocus.unfocus()
+                : passwordFocus.unfocus();
+            isFocusedUsername = false;
+            isFocusedPassword = false;
+          });
+          return Text('');
+        }
+        return Text('enter your username and password');
+      },
+    );
   }
 
   @override
