@@ -208,18 +208,18 @@ class _LoginState extends State<Login> {
                             width: double.infinity,
                             margin: EdgeInsets.fromLTRB(25.0, .0, 25.0, 15.0),
                             child: ElevatedButton(
-                              child: Container(
-                                color: Color.fromRGBO(255, 106, 58, 1.0),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(35.0)),
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromRGBO(255, 106, 58, 1.0),
                                 padding: EdgeInsets.all(15.0),
-                                child: Text(
-                                  "Get Started",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w600),
-                                ),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(35.0)),
+                              ),
+                              child: Text(
+                                "Get Started",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600),
                               ),
                               onPressed: () => _submit(),
                             ),
