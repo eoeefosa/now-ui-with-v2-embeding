@@ -19,7 +19,7 @@ import 'ui/onboard/onboard.dart' show OnBoard;
 
 //import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(new Main());
+void main() => runApp(Main());
 
 class Main extends StatefulWidget {
   @override
