@@ -59,12 +59,8 @@ class _MainState extends State<Main> {
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
                     borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(color: Colors.black26, blurRadius: 5.0)
-                    ]))),
-        home: loggedIn
-            ? Discover()
-            : /*_userOnBoardStatus == 1 ? Login() :*/ OnBoard(),
+                    boxShadow: <BoxShadow>[BoxShadow(color: Colors.black26, blurRadius: 5.0)]))),
+        home: loggedIn ? Discover() : /*_userOnBoardStatus == 1 ? Login() :*/ Discover(),
         //initialRoute: loggedIn ? '/' : _userOnBoardStatus == 1 ? "/Login" : "/OnBoard",//initRoute value must be ready before anything, when change condition app must restart to make changes! - use home instead.
         routes: {
           "/OnBoard": (context) => OnBoard(),

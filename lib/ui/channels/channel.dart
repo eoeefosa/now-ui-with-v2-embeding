@@ -36,19 +36,11 @@ class _ChannelState extends State<Channel> {
     }
   }*/
 
-  Widget _getChannelArticles(
-      {required String title,
-      required String source,
-      required String datetime,
-      required Function onTap}) {
+  Widget _getChannelArticles({required String title, required String source, required String datetime, required Function onTap}) {
     return ListTile(
       onTap: onTap(),
       contentPadding: EdgeInsets.all(20.0),
-      title: Container(
-          margin: EdgeInsets.only(bottom: 20.0),
-          child: Text(title,
-              style: TextStyle(
-                  fontSize: 20.0, fontWeight: FontWeight.bold, height: 1.4))),
+      title: Container(margin: EdgeInsets.only(bottom: 20.0), child: Text(title, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, height: 1.4))),
       subtitle: //Source, DateTime
           Container(
               child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
@@ -56,18 +48,13 @@ class _ChannelState extends State<Channel> {
         Padding(
             padding: const EdgeInsets.only(right: 20.0),
             child: Row(children: <Widget>[
-              Image.asset(imagesPath + "source.png",
-                  width: sourceIconSize, color: Colors.grey[800]),
-              Text("  $source",
-                  style:
-                      TextStyle(color: Colors.black, fontSize: newsSpansSize))
+              Image.asset(imagesPath + "source.png", width: sourceIconSize, color: Colors.grey[800]),
+              Text("  $source", style: TextStyle(color: Colors.black, fontSize: newsSpansSize))
             ])),
         //DateTime
         Row(children: <Widget>[
-          Image.asset(imagesPath + "time.png",
-              width: timeIconSize, color: Colors.grey[800]),
-          Text("  $datetime",
-              style: TextStyle(color: Colors.black, fontSize: newsSpansSize))
+          Image.asset(imagesPath + "time.png", width: timeIconSize, color: Colors.grey[800]),
+          Text("  $datetime", style: TextStyle(color: Colors.black, fontSize: newsSpansSize))
         ])
       ])),
     );
@@ -84,42 +71,42 @@ class _ChannelState extends State<Channel> {
         ? Container(
             width: 110.0,
             margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-            child: ElevatedButton(
-              onPressed: () => _toggleFollow(),
-              style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                  primary: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(35.0),
-                    ),
-                  )),
-              child: Text(
-                "Following",
-                style: TextStyle(
-                    color: appMainColor,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: .3),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _toggleFollow(),
+                  style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(35.0),
+                        ),
+                      )),
+                  child: Text(
+                    "Following",
+                    style: TextStyle(color: appMainColor, fontSize: 12.0, fontWeight: FontWeight.bold, letterSpacing: .3),
+                  ),
+                ),
+              ],
             ),
           )
         : Container(
             width: 110.0,
             margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(249, 99, 50, 1.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(35.0))),
-                  padding: EdgeInsets.only(top: 12.0, bottom: 12.0)),
-              onPressed: () => _toggleFollow(),
-              child: Text("Follow",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: .3)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(249, 99, 50, 1.0),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(35.0))),
+                      padding: EdgeInsets.only(top: 12.0, bottom: 12.0)),
+                  onPressed: () => _toggleFollow(),
+                  child: Text("Follow", style: TextStyle(color: Colors.white, fontSize: 12.0, fontWeight: FontWeight.bold, letterSpacing: .3)),
+                ),
+              ],
             ));
   }
 
@@ -143,14 +130,11 @@ class _ChannelState extends State<Channel> {
                   builder: (context) => Tooltip(
                     message: "Open navigation menu",
                     child: GestureDetector(
-                        child: Image.asset(imagesPath + "menu.png",
-                            semanticLabel: "Aside (navigation) menu",
-                            scale: appBarIconScale),
+                        child: Image.asset(imagesPath + "menu.png", semanticLabel: "Aside (navigation) menu", scale: appBarIconScale),
                         onTap: () => Scaffold.of(context).openDrawer()),
                   ),
                 ), //Menu
-                title: Image.asset(imagesPath + "logo.png",
-                    scale: appBarIconScale), //Logo
+                title: Image.asset(imagesPath + "logo.png", scale: appBarIconScale), //Logo
                 centerTitle: true,
                 actions: <Widget>[
                   Tooltip(
@@ -159,9 +143,7 @@ class _ChannelState extends State<Channel> {
                       onTap: () {
                         Navigator.pushNamed(context, "/Settings");
                       },
-                      child: Container(
-                          child: Image.asset(imagesPath + "settings.png",
-                              scale: appBarIconScale)),
+                      child: Container(child: Image.asset(imagesPath + "settings.png", scale: appBarIconScale)),
                     ),
                   )
                 ],
@@ -169,12 +151,8 @@ class _ChannelState extends State<Channel> {
             : AppBar(
                 backgroundColor: appMainColor,
                 elevation: .0,
-                leading: GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Image.asset(imagesPath + "back.png",
-                        scale: appBarIconScale)),
-                title: Image.asset(imagesPath + "logo.png",
-                    scale: appBarIconScale),
+                leading: GestureDetector(onTap: () => Navigator.pop(context), child: Image.asset(imagesPath + "back.png", scale: appBarIconScale)),
+                title: Image.asset(imagesPath + "logo.png", scale: appBarIconScale),
                 centerTitle: true),
         body: _channel != null
             ? Container(
@@ -186,9 +164,7 @@ class _ChannelState extends State<Channel> {
                       //Banner, Info
                       Container(
                           child: Image.asset(imagesPath + "channel-banner.png",
-                              width: screenSize(window).width,
-                              height: screenSize(window).height / 3.5,
-                              fit: BoxFit.cover)),
+                              width: screenSize(window).width, height: screenSize(window).height / 3.5, fit: BoxFit.cover)),
                       //Banner gradient
                       /*Container(
                           decoration: BoxDecoration(
@@ -206,58 +182,36 @@ class _ChannelState extends State<Channel> {
                       //Info
                       Container(
                           alignment: Alignment.center,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: <Widget>[
-                                Text(
-                                    _channel!.toUpperCase() +
-                                        " channel".toUpperCase(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.1)),
-                                _getFollowButton(),
-                                Text("234K Followers",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: .2))
-                              ]))
+                          child: Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.max, children: <Widget>[
+                            Text(_channel!.toUpperCase() + " channel".toUpperCase(),
+                                style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold, letterSpacing: 1.1)),
+                            _getFollowButton(),
+                            Text("234K Followers", style: TextStyle(color: Colors.white, fontSize: 12.0, fontWeight: FontWeight.bold, letterSpacing: .2))
+                          ]))
                     ])),
                 //Content
                 Expanded(
                     child: ListView(children: <Widget>[
                   _getChannelArticles(
-                      title:
-                          "NASA goes to Mars: Astronauts could land on Red Planet by 2039",
+                      title: "NASA goes to Mars: Astronauts could land on Red Planet by 2039",
                       source: "SPACE.com",
                       datetime: "Feb 27, 2020",
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Story(1)))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Story(1)))),
                   _getChannelArticles(
-                      title:
-                          "Archaeologists discovered lost city in Honduran jungle",
+                      title: "Archaeologists discovered lost city in Honduran jungle",
                       source: "CNN",
                       datetime: "Apr 3, 2015",
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Story()))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Story()))),
                   _getChannelArticles(
-                      title:
-                          "The balloons that could fly tourists to the edge of space",
+                      title: "The balloons that could fly tourists to the edge of space",
                       source: "CNN",
                       datetime: "Apr 1, 2015",
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Story()))),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Story()))),
                   _getChannelArticles(
-                      title:
-                          "Praesent convallis posuere euismod Nulla sodales cras amet",
+                      title: "Praesent convallis posuere euismod Nulla sodales cras amet",
                       source: "BBC",
                       datetime: "Feb 10, 2020",
-                      onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Story())))
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Story())))
                 ]))
               ]))
             //Not found
@@ -268,34 +222,17 @@ class _ChannelState extends State<Channel> {
                 child: Container(
                   height: screenSize(window).height / 4,
                   color: appMainColor,
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Channel not found",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.0)),
-                        Padding(
-                            padding: EdgeInsets.only(top: 15.0),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Padding(
-                                      padding: EdgeInsets.only(right: 12.5),
-                                      child: GestureDetector(
-                                          onTap: () => Navigator.pop(context),
-                                          child: Image.asset(
-                                              imagesPath + "back.png",
-                                              scale: appBarIconScale))),
-                                  Text(_timedown.toString(),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold))
-                                ]))
-                      ]),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                    Text("Channel not found", style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
+                    Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                          Padding(
+                              padding: EdgeInsets.only(right: 12.5),
+                              child: GestureDetector(onTap: () => Navigator.pop(context), child: Image.asset(imagesPath + "back.png", scale: appBarIconScale))),
+                          Text(_timedown.toString(), style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold))
+                        ]))
+                  ]),
                 ),
               ));
   }
